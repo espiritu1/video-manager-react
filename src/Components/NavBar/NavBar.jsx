@@ -16,10 +16,6 @@ export const NavBar=()=> {
 		console.log(buscar);
 	};
 
-  	const handleClciDesplegar= (e) =>{
-		console.log("me cliqueo todo ");
-	};
-
 
 
 	const handleClickAddCategoria= (e) =>{
@@ -48,48 +44,45 @@ export const NavBar=()=> {
 
 	
   return (
-	<nav className='bg-indigo-950 m-2 '>
-		<ul className='flex justify-between  gap-2 p-2' >
-
-			<NavItem>
-				<div  className=' py-2 px-3 flex items-center gap-2 justify-center mx-auto'> 
-					<MdVideoCameraBack className="text-2xl"/>  
-					<p className="hidden md:block">Video Estudio</p>
-				</div>
-			</NavItem>
-
-			<NavItem>	
-				<Button style="md:hidden flex justify-center p-2 border rounded bg-pink-300"
-							icon={IoIosSearch}
-							action={handleClciDesplegar}
-				
-							/>
-					  
-				<InputBuscar text="buscar" icon={IoIosSearch } buscar={handlesearch} />
-			</NavItem>
-		
-			<NavItem>
-					<Button text="categoria" icon={RiArchiveDrawerLine}
-						style=" bg-blue-950"
-						action={ handleClickAddCategoria}/>
-						
-								
-					<Button text="sub categoria " icon={CiBookmarkPlus}
-						style=" bg-blue-950"
-						action={ handleClickAddSubCategoria} />
-			</NavItem>
-				
-			<NavItem>
-				<Button text="Agregar video" icon={IoIosAddCircleOutline}
-					style=" bg-blue-500"
-					action={handleClickAddVideo}/>
-
-				<Button text="Borrar" icon={LiaTrashAltSolid }
-					style="  text-red-500 bg-indigo-950 " 
-					action={handleClickEliminar}/>
+	<>
+		<nav className=' bg-kanagawa-50  dark:bg-kanagawa-700'>
+			<ul className='flex justify-between  gap-2 p-2' >
+	
+				<NavItem>
+					<div  className=' py-2 px-3   flex items-center gap-2 justify-center mx-auto'> 
+						<MdVideoCameraBack className="text-2xl"/>  
+						<p className="hidden md:block">Video Estudio</p>
+					</div>
+				</NavItem>
+	
+				<NavItem estilo=" hidden  mx-10 lg:flex flex-1 ">
+					<InputBuscar  value={buscar}  text="buscar" icon={IoIosSearch } buscar={handlesearch} />
+				</NavItem>
+			
+				<NavItem>
+						<Button text="categoria" icon={RiArchiveDrawerLine} action={ handleClickAddCategoria}/>
+						<Button text="sub categoria " icon={CiBookmarkPlus} action={ handleClickAddSubCategoria} />
+				</NavItem>
 					
-			</NavItem>
-		</ul>
-	</nav>
+				<NavItem>
+					<Button text="Agregar video" icon={IoIosAddCircleOutline} style="text-black dark:text-kanagawa-primaryL"
+						action={handleClickAddVideo}/>
+	
+					<Button text="Borrar" icon={LiaTrashAltSolid } style="text-kanagawa-error  " 
+						action={handleClickEliminar}/>
+						
+				</NavItem>
+			</ul>
+	
+		</nav>
+		
+		<div className="flex justify-center lg:hidden w-full ">
+			<div className="w-full  p-2"> 
+				<InputBuscar value={buscar}  text="buscar"  icon={IoIosSearch}  buscar={handlesearch}  />
+			</div>
+		
+		</div>
+
+	</>
   )
 }

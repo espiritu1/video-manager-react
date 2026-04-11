@@ -1,5 +1,6 @@
 
 import { NavBar } from './Components/NavBar/NavBar'
+import { Paleta } from './Components/Paleta/Paleta'
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
   return (
 	<>	
 		<NavBar/>
+    <Paleta/>
 
 
     </>

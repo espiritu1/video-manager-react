@@ -1,46 +1,7 @@
 @import "tailwindcss";
-:root {
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7; 
+@custom-variant dark (&:where(.dark, .dark *));
 
-  
-  
-  
-  
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
- 
-  color: #ffffff;
-  background: #16171d;;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    
-    
-    --border: #2e303a;  
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
- 
-}
 
 
 
@@ -70,3 +31,50 @@ h2 {
   }
 }
 
+
+
+@theme {
+  
+  --color-kanagawa-900: #16161D;
+  --color-kanagawa-800: #1F1F28;
+  --color-kanagawa-700: #2A2A37;
+  --color-kanagawa-600: #363646;
+
+  --color-kanagawa-25: #F2EED6;
+  --color-kanagawa-50: #E8E3C8;
+  --color-kanagawa-100: #DCD7BA;
+  --color-kanagawa-200: #C8C093;
+  --color-kanagawa-300: #727169;
+
+  --color-kanagawa-primaryD: #6B89C4;
+  --color-kanagawa-primary: #7E9CD8;
+  --color-kanagawa-primaryL: #60A5FA;
+
+  --color-kanagawa-secondaryD: #7E6AA3;
+  --color-kanagawa-secondary: #957FB8;
+  --color-kanagawa-secondaryL: #B8A4E0;
+
+  --color-kanagawa-accentD: #7FA35A;
+  --color-kanagawa-accent: #98BB6C;
+  --color-kanagawa-accentL: #A9D27E;
+
+  --color-kanagawa-highlight: #E6C384;
+
+  --color-kanagawa-success: #76946A;
+
+  --color-kanagawa-warningD: #E68A2E;
+  --color-kanagawa-warning: #FF9E3B;
+  --color-kanagawa-warningL: #FFB86C;
+
+  --color-kanagawa-errorD: #C01F1F;
+  --color-kanagawa-error: #E82424;
+  --color-kanagawa-errorL: #F05252;
+
+  --color-kanagawa-info: #6A9589;
+
+  --color-kanagawa-pinkD: #B86A83;
+  --color-kanagawa-pink: #D27E99;
+  --color-kanagawa-pinkL: #FF73A8;
+
+  --color-kanagawa-orange: #FFA066;
+}

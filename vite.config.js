@@ -9,6 +9,15 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    babel({ presets: [reactCompilerPreset()] })
+    babel({ presets: [reactCompilerPreset()] }),
+    
+
   ],
+  assetsInclude: ['**/*.docx'],
+    server: {
+    host: true,
+    allowedHosts: ['.tunnelmole.net']
+  },
+
+  
 })
