@@ -1,6 +1,8 @@
 
 import { NavBar } from './Components/NavBar/NavBar'
 import { Paleta } from './Components/Paleta/Paleta'
+import { VideoLayout } from './Components/VideoLayout/VideoLayout'
+
 
 function App() {
 
@@ -8,7 +10,8 @@ function App() {
   return (
 	<>	
 		<NavBar/>
-    <Paleta/>
+    <VideoLayout/>    
+    
 
 
     </>

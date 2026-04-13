@@ -45,8 +45,9 @@ export const NavBar=()=> {
 	
   return (
 	<>
-		<nav className=' bg-kanagawa-50  dark:bg-kanagawa-700'>
-			<ul className='flex justify-between  gap-2 p-2' >
+		<nav className='dark:bg-kanagawa-700 ' aria-label="Barra de navegación principal">
+
+			<ul className='flex justify-between  gap-2 p-2 bg-kanagawa-50 dark:bg-kanagawa-700' >
 	
 				<NavItem>
 					<div  className=' py-2 px-3   flex items-center gap-2 justify-center mx-auto'> 
@@ -56,7 +57,7 @@ export const NavBar=()=> {
 				</NavItem>
 	
 				<NavItem estilo=" hidden  mx-10 lg:flex flex-1 ">
-					<InputBuscar  value={buscar}  text="buscar" icon={IoIosSearch } buscar={handlesearch} />
+					<InputBuscar  value={buscar}  text="Buscar" icon={IoIosSearch } buscar={handlesearch} />
 				</NavItem>
 			
 				<NavItem>
@@ -73,16 +74,15 @@ export const NavBar=()=> {
 						
 				</NavItem>
 			</ul>
-	
-		</nav>
-		
-		<div className="flex justify-center lg:hidden w-full ">
-			<div className="w-full  p-2"> 
-				<InputBuscar value={buscar}  text="buscar"  icon={IoIosSearch}  buscar={handlesearch}  />
-			</div>
-		
-		</div>
 
+			
+				<div className="flex justify-center lg:hidden w-full  p-2 dark:bg-kanagawa-800"> 
+					<InputBuscar value={buscar}  text="Buscar"  icon={IoIosSearch}  buscar={handlesearch}  />
+				</div>
+		
+		
+		</nav>
+	
 	</>
   )
 }
