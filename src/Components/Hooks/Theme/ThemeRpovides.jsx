@@ -15,9 +15,8 @@ export const ThemeProvider = ({ children }) => {
 		>
 			<div 
 				className="min-h-screen 
-
-				bg-kanagawa-25 text-kanagawa-700
-				dark:text-kanagawa-25 dark:bg-kanagawa-800"
+				bg-amber-50 text-kanagawa-700
+				dark:text-kanagawa-100 dark:bg-kanagawa-800"
 			>
 				{children}
 			</div>

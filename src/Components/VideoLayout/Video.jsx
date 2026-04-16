@@ -7,7 +7,7 @@ export const Video = ({ leftWidth, isResizing }) => {
       style={{ 
         width: window.innerWidth >= 640 ? `${leftWidth}%` : "100%" 
       }}
-      className="bg-kanagawa-700 p-4 my-3 rounded w-full"
+      className="bg-kanagawa-25 dark:bg-kanagawa-700 p-0.5 my-3 rounded w-full"
     >
       <article className="h-full flex flex-col gap-4">
        
@@ -17,7 +17,7 @@ export const Video = ({ leftWidth, isResizing }) => {
           }`}
         >
           <video controls className="w-full">
-            {/* <source src={ozzy} /> */}
+            <source src={ozzy} />
             <source src="" />
           </video>
         </div>
