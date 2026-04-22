@@ -1,11 +1,7 @@
 import { IoClose } from "react-icons/io5"
 
-export const Aside = ({
-  show,
-  position = "left",
-  onClose,
-  children,
-  title
+export const Aside = ({ 
+  show, position = "left", onClose, children, title, 
 }) => {
 
   const isLeft = position === "left"

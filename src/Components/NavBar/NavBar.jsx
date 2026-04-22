@@ -10,13 +10,10 @@ import { Aside } from '../Aside/Aside'
 import { Dropdown } from "../Dropdown/Dropdown"
 
 
-
-
 export const NavBar=( { onAddVideo, onDelete })=> {
 	
 	const	[buscar,setBuscar] = useState("")
 	
-
 	const handlesearch = (e) => {
 		setBuscar(e.target.value);
 		console.log(buscar);

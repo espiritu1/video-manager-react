@@ -4,6 +4,7 @@ import { NavBar } from './Components/NavBar/NavBar'
 import { Paleta } from './Components/Paleta/Paleta'
 import { VideoLayout } from './Components/VideoLayout/VideoLayout'
 import { Aside } from './Components/Aside/Aside'
+import { AsideLeft } from './Components/Aside/AsideLeft/AsideLeft'
 
 
 function App() {
@@ -23,6 +24,10 @@ function App() {
 				position="left"
 				onClose={() => setShowAddVideo(false)}
 				title="Agregar video"
+				children={
+					<AsideLeft/>
+				}
+
 			>
 
 			</Aside>
