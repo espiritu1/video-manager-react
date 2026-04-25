@@ -8,7 +8,15 @@ import {videoSchema} from"./models/videoSchema"
 export const FormAddVideo = () => {
 	const { control, handleSubmit, formState: { errors } } = useForm({
 		resolver: zodResolver(videoSchema),
-		mode: "onTouched"
+		mode: "onTouched" ,
+		defaultValues: {
+    titulo: "",
+    descripcion: "",
+    categoria: "",
+    subCategoria: "",
+    video: undefined,
+    miniatura: undefined
+  }
 
 	});
 
@@ -19,7 +27,7 @@ export const FormAddVideo = () => {
 	return (
 		<form className="flex flex-col gap-3 " onSubmit={handleSubmit(onSubmit)}>
 			<InputForm name="titulo" control={control} label ="Titulo" placeholder="Escribe el título del video" type="text" error={errors.titulo}/>
-			<InputForm name="descripcion" control={control} label ="Descripcion" placeholder="Describe el contenido del video" type="textarea" error={errors.descripcion}/>
+			<InputForm name="descripcion" control={control} label ="Descripcion" placeholder="Describe el contenido del video" type="text" error={errors.descripcion}/>
 			
 			
 			<InputForm name="categoria" control={control} label ="Categoria" placeholder="Categoria del video" type="text" error={errors.categoria}/>

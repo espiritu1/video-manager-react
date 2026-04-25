@@ -18,7 +18,7 @@ export const Video = ({ leftWidth, isResizing }) => {
         >
           <video controls className="w-full">
             <source src={ozzy} />
-            <source src="" />
+         
           </video>
         </div>
 
