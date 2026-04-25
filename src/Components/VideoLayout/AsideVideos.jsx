@@ -10,7 +10,7 @@ export const AsideVideos=({isMobile,leftWidth})=> {
       >
         <h2 className="font-bold mb-4">Lista de videos</h2>
 
-        <ul className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-4 w-full">
+        <ul className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4 w-full">
          
 		  	
 				<CardVideo
