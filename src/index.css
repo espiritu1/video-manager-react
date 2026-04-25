@@ -35,17 +35,20 @@ h2 {
 
 @theme {
   
-  --color-kanagawa-900: #16161D;
-  --color-kanagawa-800: #1F1F28;
-  --color-kanagawa-700: #2A2A37;
-  --color-kanagawa-600: #363646;
-
   --color-kanagawa-25: #f7f3df;
   --color-kanagawa-50: #E8E3C8;
   --color-kanagawa-100: #DCD7BA;
   --color-kanagawa-200: #C8C093;
   --color-kanagawa-300: #727169;
+  --color-kanagawa-400: #5A5A5E;
+  --color-kanagawa-500: #45454D;
+  --color-kanagawa-600: #363646;
+  --color-kanagawa-700: #2A2A37;
+  --color-kanagawa-800: #1F1F28;
+  --color-kanagawa-900: #16161D;
 
+  
+  
   --color-kanagawa-primaryD: #6B89C4;
   --color-kanagawa-primary: #7E9CD8;
   --color-kanagawa-primaryL: #60A5FA;

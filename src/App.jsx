@@ -5,6 +5,7 @@ import { Paleta } from './Components/Paleta/Paleta'
 import { VideoLayout } from './Components/VideoLayout/VideoLayout'
 import { Aside } from './Components/Aside/Aside'
 import { AsideLeft } from './Components/Aside/AsideLeft/AsideLeft'
+import { AsideRight } from './Components/Aside/AsideRight/AsideRight'
 
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
 				position="right"
 				onClose={() => setShowDelete(false)}
 				title="Eliminar"
+				children={
+					<AsideRight/>
+				}
 			>
 			
 			</Aside>

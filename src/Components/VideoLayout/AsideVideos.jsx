@@ -1,4 +1,6 @@
 import React from 'react'
+import { CardVideo } from '../CardVideo/CardVideo'
+
 
 export const AsideVideos=({isMobile,leftWidth})=> {
   return (
@@ -8,10 +10,102 @@ export const AsideVideos=({isMobile,leftWidth})=> {
       >
         <h2 className="font-bold mb-4">Lista de videos</h2>
 
-        <ul className="space-y-3">
-          <li className="p-2  border dark:bg-kanagawa-600 rounded">Video 1</li>
-          <li className="p-2 bg-kanagawa-600 rounded">Video 2</li>
-          <li className="p-2 bg-kanagawa-600 rounded">Video 3</li>
+        <ul className="grid grid-cols-[repeat(auto-fill,minmax(230px,1fr))] gap-4 w-full">
+         
+		  	
+				<CardVideo
+				
+					title="un titulo corto " 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion ttecto de ejmplo par a ver qeu pase si pongp  mucho texto sim  importar el tamaño de este pedo a ver qeu sale  a la vdfsd fbsfgnd ghmdghnpor tffdgd fghmwurtsun mhuvt muserfa" 
+				/>
+
+				<CardVideo
+					title="un titulo un poco mas largo" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>			
+			
+				<CardVideo
+					title="un titulo bastnate  mas largo para" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>			
+				
+				<CardVideo
+					title="Un ocdigo e pe ta cular" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>
+				<CardVideo
+			
+					title="Un ocdigo e pe ta cular" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>		
+				<CardVideo
+					title="Un ocdigo e pe ta cular" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>
+
+				<CardVideo
+						title="Un ocdigo e pe ta cular" 
+						category="react" 
+						subCategory="formulario" 
+						description="descripcion a la verfa" 
+				/>
+
+				<CardVideo
+					title="Un ocdigo e pe ta cular" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>
+
+				<CardVideo
+					title="Un ocdigo e pe ta cular" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>
+
+				<CardVideo
+
+					title="Un ocdigo e pe ta cular" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>
+
+				<CardVideo
+					title="Un ocdigo e pe ta cular" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>
+
+				<CardVideo
+					title="Un ocdigo e pe ta cular" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				/>
+
+				<CardVideo				
+					title="Un ocdigo e pe ta cular" 
+					category="react" 
+					subCategory="formulario" 
+					description="descripcion a la verfa" 
+				
+				/>
+			
         </ul>
       </aside>
   )

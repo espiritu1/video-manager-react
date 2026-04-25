@@ -3,7 +3,7 @@ import { FaCaretLeft, FaCaretRight } from "react-icons/fa"
 
 export const  ResizeVideo = ( { ocultar,onMouseDown, })=> {
   return (
-	<div	className={`relative flex flex-col items-center m-1 justify-center cursor-col-resize w-2 group ${ocultar} `}
+	<div	className={`relative flex flex-col items-center m-1 py-100 cursor-col-resize w-2 group ${ocultar} `}
 					onMouseDown={onMouseDown}>
 				
 				<div className="pr-11 items-center justify-center rotate-90 opacity-0 group-hover:opacity-100 transition-opacity">
