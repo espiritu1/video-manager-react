@@ -1,11 +1,35 @@
-import React from 'react'
+/* archivo CrearCategoria.js */
+export const CrearCategoria = async (data) => {
+	try {
+		const response = await fetch("http://localhost:3000/api/categories", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				name: data.categoria,
+			}),
+		});
 
-export const  CrearCategoria = async(data,url)=> {
+		const result = await response.json();
 
+		if (!response.ok) {
+			return {
+				ok: false,
+				mensaje: result.error || "Error al crear categoría",
+			};
+		}
 
+		return {
+			ok: true,
+			mensaje: "Categoría creada",
+			categoria: result.data,
+		};
 
-
-  return (
-	<div>CrearCategoria</div>
-  )
+	} catch (error) {
+		return {
+			ok: false,
+			mensaje: "Error de red",
+		};
 }
+};

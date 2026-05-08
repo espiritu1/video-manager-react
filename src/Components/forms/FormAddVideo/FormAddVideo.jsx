@@ -1,14 +1,16 @@
-
+/* archivo FormAddVideo.jsx */
 import { zodResolver } from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form"
-import InputForm from "../InputForm/InputForm";
-import {videoSchema} from"./models/videoSchema"
-import { CrearVideo } from "../../API/CrearVideo";
+import InputForm from "../../InputForm/InputForm";
+import {videoSchema} from"../models/videoSchema"
+import { CrearVideo } from "../../../API/CrearVideo";
 import { useState } from "react";
+import { CategorySelector } from "../../InputForm/Selecto/CategorySelector";
 
 
-export const FormAddVideo = () => {
+export const FormAddVideo = ({ reloadCategorias }) => {
 	const [fileKey, setFileKey] = useState(Date.now());
+	
 	const { control, handleSubmit,reset, formState: { errors } } = useForm({
 		resolver: zodResolver(videoSchema),
 		mode: "onTouched" ,
@@ -19,20 +21,21 @@ export const FormAddVideo = () => {
 			subCategoria: "",
 			video: "",
 			miniatura: ""
-  		}
+		}
 	});
 
 	const onSubmit = async (data) => {
+		
 		console.log(data);
-	  const res = await CrearVideo(data);
+		const res = await CrearVideo(data);
 
-	  if (res.ok) {
-	    console.log("✅", res.mensaje);
-		setFileKey(Date.now()); 
-		reset()
-	  } else {
-	    console.log("❌", res.mensaje);
-	  }
+		if (res.ok) {
+			console.log("✅ esto se guardo", res.mensaje);
+			setFileKey(Date.now()); 
+			reset();
+		} else {
+			console.log("❌", res.mensaje);
+		}
 	};
 
 
@@ -41,7 +44,11 @@ export const FormAddVideo = () => {
 			<InputForm name="titulo" control={control} label ="Titulo" placeholder="Escribe el título del video" type="text" error={errors.titulo}/>
 			<InputForm name="descripcion" control={control} label ="Descripcion" placeholder="Describe el contenido del video" type="text" error={errors.descripcion}/>
 			
-			
+
+				<CategorySelector reloadCategorias={reloadCategorias}/>
+
+
+
 			<InputForm name="categoria" control={control} label ="Categoria" placeholder="Categoria del video" type="text" error={errors.categoria}/>
 			<InputForm name="subCategoria" control={control} label ="Sub Categoria" placeholder="subcategoria del video" type="text" error={errors.subCategoria}/>
 

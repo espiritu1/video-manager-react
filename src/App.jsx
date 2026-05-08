@@ -1,4 +1,4 @@
-
+/*  archivo App.jsx */
 import { useState } from 'react'
 import { NavBar } from './Components/NavBar/NavBar'
 import { Paleta } from './Components/Paleta/Paleta'
@@ -12,46 +12,42 @@ function App() {
 
     const [showAddVideo, setShowAddVideo] = useState(false)
     const [showDelete, setShowDelete] = useState(false)
+	const [reloadCategorias, setReloadCategorias] = useState(false);
+
+	const actualizarCategorias = () => {
+    	setReloadCategorias(prev => !prev);
+	};
 
 
-  return (
-	<>	
-		<NavBar  
-			onAddVideo={() => setShowAddVideo(true)}
-        	onDelete={() => setShowDelete(true)} />
-			
-			<Aside
-				show={showAddVideo}
-				position="left"
-				onClose={() => setShowAddVideo(false)}
-				title="Agregar video"
-				children={
-					<AsideLeft/>
-				}
+	return (
+		<>	
+			<NavBar
+				onAddVideo={() => setShowAddVideo(true)}
+				onDelete={() => setShowDelete(true)} 
+				onCategoriaCreada={actualizarCategorias}
+				/>
 
-			>
+				<Aside
+					show={showAddVideo}
+					position="left"
+					onClose={() => setShowAddVideo(false)}
+					title="Agregar video"
+					children={ 
+					<AsideLeft reloadCategorias={reloadCategorias} /> 
+					} >
+				</Aside>
 
-			</Aside>
+				<Aside
+					show={showDelete}
+					position="right"
+					onClose={() => setShowDelete(false)}
+					title="Eliminar"
+					children={ <AsideRight/> } >
+				</Aside>
 
-			<Aside
-
-				show={showDelete}
-				position="right"
-				onClose={() => setShowDelete(false)}
-				title="Eliminar"
-				children={
-					<AsideRight/>
-				}
-			>
-			
-			</Aside>
-		
-		<VideoLayout/>    
-    
-    
-
-    </>
-  )
+			<VideoLayout/>
+		</>
+	)
 }
 
 export default App
