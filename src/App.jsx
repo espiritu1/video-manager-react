@@ -10,9 +10,11 @@ import { AsideRight } from './Components/Aside/AsideRight/AsideRight'
 
 function App() {
 
-    const [showAddVideo, setShowAddVideo] = useState(false)
-    const [showDelete, setShowDelete] = useState(false)
+	const [showAddVideo, setShowAddVideo] = useState(false)
+	const [showDelete, setShowDelete] = useState(false)
 	const [reloadCategorias, setReloadCategorias] = useState(false);
+	const [searchQuery, setSearchQuery] = useState(""); /* texto de mi input para buscar videos */
+	const [selectedVideoId, setSelectedVideoId] = useState(null);
 
 	const actualizarCategorias = () => {
     	setReloadCategorias(prev => !prev);
@@ -25,6 +27,9 @@ function App() {
 				onAddVideo={() => setShowAddVideo(true)}
 				onDelete={() => setShowDelete(true)} 
 				onCategoriaCreada={actualizarCategorias}
+				searchQuery={searchQuery}
+				setSearchQuery={setSearchQuery}
+				setSelectedVideoId={setSelectedVideoId}
 				/>
 
 				<Aside
@@ -45,7 +50,7 @@ function App() {
 					children={ <AsideRight/> } >
 				</Aside>
 
-			<VideoLayout/>
+			<VideoLayout searchQuery={searchQuery} selectedVideoId={selectedVideoId} setSelectedVideoId={setSelectedVideoId}/>
 		</>
 	)
 }

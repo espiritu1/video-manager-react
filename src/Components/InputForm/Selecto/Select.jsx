@@ -1,4 +1,4 @@
-
+/* Select.jsx */
 export const Select = ({
     items = [],
     value,
@@ -7,7 +7,8 @@ export const Select = ({
     name,
     optionLabel = "name",
     optionValue = "id",
-    className = ""
+    className = "",
+    ...props
 }) => {
 
     return (
@@ -24,6 +25,7 @@ export const Select = ({
                 dark:bg-kanagawa-700
                 ${className}
             `}
+            {...props}
         >
 
             <option value="">
@@ -44,4 +46,3 @@ export const Select = ({
         </select>
     );
 };
-

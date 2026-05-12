@@ -7,7 +7,6 @@ import { CrearVideo } from "../../../API/CrearVideo";
 import { useState } from "react";
 import { CategorySelector } from "../../InputForm/Selecto/CategorySelector";
 
-
 export const FormAddVideo = ({ reloadCategorias }) => {
 	const [fileKey, setFileKey] = useState(Date.now());
 	
@@ -45,12 +44,16 @@ export const FormAddVideo = ({ reloadCategorias }) => {
 			<InputForm name="descripcion" control={control} label ="Descripcion" placeholder="Describe el contenido del video" type="text" error={errors.descripcion}/>
 			
 
-				<CategorySelector reloadCategorias={reloadCategorias}/>
+			{/* 	<CategorySelector reloadCategorias={reloadCategorias}/> */}
+
+<CategorySelector
+    control={control}
+    reloadCategorias={reloadCategorias}
+/>
 
 
-
-			<InputForm name="categoria" control={control} label ="Categoria" placeholder="Categoria del video" type="text" error={errors.categoria}/>
-			<InputForm name="subCategoria" control={control} label ="Sub Categoria" placeholder="subcategoria del video" type="text" error={errors.subCategoria}/>
+			{/* <InputForm name="categoria" control={control} label ="Categoria" placeholder="Categoria del video" type="text" error={errors.categoria}/>
+			<InputForm name="subCategoria" control={control} label ="Sub Categoria" placeholder="subcategoria del video" type="text" error={errors.subCategoria}/> */}
 
 			<InputForm key={fileKey + "-video"}  name="video" control={control} label ="Video" type="file"  error={errors.video}/>
 			<InputForm key={fileKey + "-miniatura"} name="miniatura" control={control} label ="Miniatura"  type="file" error={errors.miniatura}/>

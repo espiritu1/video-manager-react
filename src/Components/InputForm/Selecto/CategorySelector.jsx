@@ -1,105 +1,80 @@
-/* archivo CategorySelector.jsx  */
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
+import { Controller, useWatch } from "react-hook-form";
 
-export const CategorySelector = ({ reloadCategorias }) => {
+import { Select } from "./Select";
+import { useCategorias } from "../../Hooks/useCategorias"
 
-  const [categorias, setCategorias] = useState([]);
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("");
-  const [subcategorias, setSubcategorias] = useState([]);
+export const CategorySelector = ({
+    control,
+    reloadCategorias
+}) => {
 
-  // Obtener categorías
-  useEffect(() => {
+    const {
+        categoriasPrincipales,
+        categorias
+    } = useCategorias(reloadCategorias);
 
-    const fetchCategorias = async () => {
-      try {
+    // observar categoria seleccionada
+    const categoriaSeleccionada = useWatch({
+        control,
+        name: "categoria"
+    });
 
-        const res = await fetch("http://localhost:3000/api/categories");
-        const data = await res.json();
+    // subcategorias dinámicas
+    const subcategorias = useMemo(() => {
 
-        // Filtrar solo categorías principales
-        const principales = data.data.filter(
-          (cat) => cat.parentId === null
+        if (!categoriaSeleccionada) return [];
+
+        const categoria = categorias.find(
+            (cat) => cat.id === Number(categoriaSeleccionada)
         );
 
-        setCategorias(principales);
+        return categoria?.children || [];
 
-      } catch (error) {
-        console.log("❌ Error obteniendo categorías");
-      }
-    };
-
-    fetchCategorias();
-
-  }, [reloadCategorias]); // 👈 AQUI ESTA EL CAMBIO
+    }, [categoriaSeleccionada, categorias]);
 
 
 
-  // Obtener subcategorías cuando cambia la categoría seleccionada
-  useEffect(() => {
+    return (
 
-    const fetchSubcategorias = async () => {
+        <div className="flex flex-col gap-3">
 
-      if (!categoriaSeleccionada) {
-        setSubcategorias([]);
-        return;
-      }
+            {/* categoria */}
+            <Controller
+                control={control}
+                name="categoria"
+                render={({ field }) => (
 
-      try {
+                    <Select
+                        {...field}
+                        items={categoriasPrincipales}
+                        placeholder="Selecciona una categoría"
+                    />
 
-        const res = await fetch("http://localhost:3000/api/categories");
-        const data = await res.json();
-
-        // Buscar categoría seleccionada
-        const cat = data.data.find(
-          (c) => c.id === parseInt(categoriaSeleccionada)
-        );
-
-        setSubcategorias(cat?.children || []);
-
-      } catch (error) {
-        console.log("❌ Error obteniendo subcategorías");
-      }
-    };
-
-    fetchSubcategorias();
-
-  }, [categoriaSeleccionada]);
+                )}
+            />
 
 
 
-  return (
-    <div className="flex flex-col gap-3">
+            {/* subcategoria */}
+            {subcategorias.length > 0 && (
 
-      <select
-        value={categoriaSeleccionada}
-        onChange={(e) => setCategoriaSeleccionada(e.target.value)}
-      >
-        <option value="">Selecciona una categoría</option>
+                <Controller
+                    control={control}
+                    name="subCategoria"
+                    render={({ field }) => (
 
-        {categorias.map((cat) => (
-          <option key={cat.id} value={cat.id}>
-            {cat.name}
-          </option>
-        ))}
-      </select>
+                        <Select
+                            {...field}
+                            items={subcategorias}
+                            placeholder="Selecciona una subcategoría"
+                        />
 
+                    )}
+                />
 
-      {subcategorias.length > 0 && (
-        <select name="subCategoria">
+            )}
 
-          <option value="">
-            Selecciona una subcategoría
-          </option>
-
-          {subcategorias.map((sub) => (
-            <option key={sub.id} value={sub.id}>
-              {sub.name}
-            </option>
-          ))}
-
-        </select>
-      )}
-
-    </div>
-  );
+        </div>
+    );
 };

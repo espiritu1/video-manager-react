@@ -20,11 +20,7 @@ export const useCategorias = (reloadCategorias) => {
 
                 const data = await res.json();
 
-                const principales = data.data.filter(
-                    (cat) => cat.parentId === null
-                );
-
-                setCategorias(principales);
+                setCategorias(data.data);
 
             } catch (error) {
 
@@ -43,9 +39,14 @@ export const useCategorias = (reloadCategorias) => {
 
     }, [reloadCategorias]);
 
+    // principales
+    const categoriasPrincipales = categorias.filter(
+        (cat) => cat.parentId === null
+    );
+
     return {
         categorias,
+        categoriasPrincipales,
         loading
     };
 };
-

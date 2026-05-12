@@ -29,7 +29,7 @@ export const FormAddSubCategoria = ({ reloadCategorias, onCategoriaCreada }) => 
 			reset(); 
 			onCategoriaCreada?.(); 
 		} else { 
-			console.log( "❌ Error creando subcategoría" ); 
+			console.log( "❌ ", res.mensaje ); 
 		} }; 
 		
 		return ( 

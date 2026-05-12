@@ -1,8 +1,24 @@
+/* AsideVideos.jsx */
 import React from 'react'
 import { CardVideo } from '../CardVideo/CardVideo'
+import { useFetch } from '../Hooks/useFetch'
 
 
-export const AsideVideos=({isMobile,leftWidth})=> {
+export const AsideVideos=({isMobile,leftWidth, setSelectedVideoId })=> {
+	const URL = "http://localhost:3000/api/videos";
+
+	const { data, loading, error } = useFetch(URL);
+
+		if (loading) {
+			return <p>Cargando video...</p>;
+		}
+		if (error) {
+			return <p>Error: {error.message}</p>;
+		}		
+		if (!data) {
+			return <p>No hay datos</p>;
+		}
+
   return (
 	      <aside
         style={{ width: isMobile ? "100%" : `${100 - leftWidth}%` }}
@@ -12,99 +28,21 @@ export const AsideVideos=({isMobile,leftWidth})=> {
 
         <ul className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4 w-full">
          
-		  	
-				<CardVideo
+		      {data.data.map((video) => (
+
+        <CardVideo
+          key={video.id}
+          id={video.id}
+          title={video.title}
+          category={video.category}
+          subCategory={video.subCategory}
+          description={video.description}
+          miniatura={video.thumbnailUrl}
+		      setSelectedVideoId={setSelectedVideoId} 
+        />
+
+      ))}
 				
-					title="un titulo corto " 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion ttecto de ejmplo par a ver qeu pase si pongp  mucho texto sim  importar el tamaño de este pedo a ver qeu sale  a la vdfsd fbsfgnd ghmdghnpor tffdgd fghmwurtsun mhuvt muserfa" 
-				/>
-
-				<CardVideo
-					title="un titulo un poco mas largo" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>			
-			
-				<CardVideo
-					title="un titulo bastnate  mas largo para" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>			
-				
-				<CardVideo
-					title="Un ocdigo e pe ta cular" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>
-				<CardVideo
-			
-					title="Un ocdigo e pe ta cular" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>		
-				<CardVideo
-					title="Un ocdigo e pe ta cular" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>
-
-				<CardVideo
-						title="Un ocdigo e pe ta cular" 
-						category="react" 
-						subCategory="formulario" 
-						description="descripcion a la verfa" 
-				/>
-
-				<CardVideo
-					title="Un ocdigo e pe ta cular" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>
-
-				<CardVideo
-					title="Un ocdigo e pe ta cular" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>
-
-				<CardVideo
-
-					title="Un ocdigo e pe ta cular" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>
-
-				<CardVideo
-					title="Un ocdigo e pe ta cular" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>
-
-				<CardVideo
-					title="Un ocdigo e pe ta cular" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				/>
-
-				<CardVideo				
-					title="Un ocdigo e pe ta cular" 
-					category="react" 
-					subCategory="formulario" 
-					description="descripcion a la verfa" 
-				
-				/>
 			
         </ul>
       </aside>

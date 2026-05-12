@@ -1,85 +1,83 @@
+/* VideoLayout.jsx */
 import { useState, useRef, useEffect, useCallback } from "react"
 import { ResizeVideo } from "./ResizeVideo"
 import { Video } from "./Video"
 import { useMediaQuery } from "../Hooks/useMediaQuery"
 import { AsideVideos } from "./AsideVideos"
 
-export const VideoLayout = () => {
-  const containerRef = useRef(null)
 
-  const isMobile = useMediaQuery("(max-width: 640px)")
+export const VideoLayout = ({ searchQuery, setSelectedVideoId, selectedVideoId  }) => {
+	const containerRef = useRef(null)
+	const isMobile = useMediaQuery("(max-width: 640px)")
+	const [isResizing, setIsResizing] = useState(false)
+	const [leftWidth, setLeftWidth] = useState(70)
+	const MIN_LEFT = 20
+	const MIN_RIGHT = 5
 
-  const [isResizing, setIsResizing] = useState(false)
-  const [leftWidth, setLeftWidth] = useState(70)
+	const handleResize = (e) => {
+		if (isMobile) return
+		e.preventDefault()
+		setIsResizing(true)
+	}
 
-  const MIN_LEFT = 20
-  const MIN_RIGHT = 5
+	const handleMouseMove = useCallback((e) => {
+		if (!isResizing || !containerRef.current || isMobile) return
 
-  const handleResize = (e) => {
-    if (isMobile) return
-    e.preventDefault()
-    setIsResizing(true)
-  }
+		const container = containerRef.current
+		const rect = container.getBoundingClientRect()
 
-  const handleMouseMove = useCallback((e) => {
-    if (!isResizing || !containerRef.current || isMobile) return
+		const relativeX = e.clientX - rect.left
+		const newLeftWidth = (relativeX / rect.width) * 100
 
-    const container = containerRef.current
-    const rect = container.getBoundingClientRect()
+		const rightWidth = 100 - newLeftWidth
 
-    const relativeX = e.clientX - rect.left
-    const newLeftWidth = (relativeX / rect.width) * 100
+		if (newLeftWidth >= MIN_LEFT && rightWidth >= MIN_RIGHT) {
+			setLeftWidth(newLeftWidth)
+		}
+  	}, [isResizing, isMobile])
 
-    const rightWidth = 100 - newLeftWidth
+	const handleMouseUp = useCallback(() => {
+		setIsResizing(false)
+	},[])
 
-    if (newLeftWidth >= MIN_LEFT && rightWidth >= MIN_RIGHT) {
-      setLeftWidth(newLeftWidth)
-    }
-  }, [isResizing, isMobile])
+	useEffect(() => {
+		if (isResizing && !isMobile) {
+			window.addEventListener("mousemove", handleMouseMove)
+			window.addEventListener("mouseup", handleMouseUp)
 
-  const handleMouseUp = useCallback(() => {
-    setIsResizing(false)
-  }, [])
+			document.body.style.userSelect = "none"
+			document.body.style.cursor = "col-resize"
+		}
 
-  useEffect(() => {
-    if (isResizing && !isMobile) {
-      window.addEventListener("mousemove", handleMouseMove)
-      window.addEventListener("mouseup", handleMouseUp)
+		return () => {
+			window.removeEventListener("mousemove", handleMouseMove)
+			window.removeEventListener("mouseup", handleMouseUp)
 
-      document.body.style.userSelect = "none"
-      document.body.style.cursor = "col-resize"
-    }
+			document.body.style.userSelect = ""
+			document.body.style.cursor = ""
+		}
+	}, [isResizing, handleMouseMove, handleMouseUp, isMobile])
 
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-      window.removeEventListener("mouseup", handleMouseUp)
+	return (
+		<section ref={containerRef} className="flex flex-col sm:flex-row select-none" >
 
-      document.body.style.userSelect = ""
-      document.body.style.cursor = ""
-    }
-  }, [isResizing, handleMouseMove, handleMouseUp, isMobile])
+			<Video 
+				leftWidth={isMobile ? 100 : leftWidth}
+				isResizing={isResizing}
 
-  return (
-    <section
-      ref={containerRef}
-      className="flex flex-col sm:flex-row select-none"
-    >
+				searchQuery={searchQuery}
+				selectedVideoId={selectedVideoId}
+      		/>
 
-      <Video
-        leftWidth={isMobile ? 100 : leftWidth}
-        isResizing={isResizing}
-      />
+			<ResizeVideo
+				ocultar="hidden sm:flex"
+				onMouseDown={handleResize}
+      		/>
 
-      <ResizeVideo
-        ocultar="hidden sm:flex"
-        onMouseDown={handleResize}
-      />
-
-		<AsideVideos
-		isMobile ={isMobile }
-		leftWidth ={leftWidth}/>
-
-
+			<AsideVideos
+				isMobile ={isMobile }
+				leftWidth ={leftWidth}
+				setSelectedVideoId={setSelectedVideoId}/>
     </section>
   )
 }

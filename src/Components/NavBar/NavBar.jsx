@@ -1,5 +1,5 @@
 /* archivo NavBar.jsx */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { CiBookmarkPlus } from 'react-icons/ci'
 import { IoIosAddCircleOutline, IoIosSearch } from 'react-icons/io'
 import { LiaTrashAltSolid } from 'react-icons/lia'
@@ -11,26 +11,28 @@ import { Aside } from '../Aside/Aside'
 import { Dropdown } from "../Dropdown/Dropdown"
 import { FormAddCategoria } from '../forms/FormCategoria/FormAddCategoria'
 import { FormAddSubCategoria } from '../forms/FormAddSubCategoria/FormAddSubCategoria'
+import { useFetch } from '../Hooks/useFetch'
 
 
-export const NavBar =( { onAddVideo, onDelete, onCategoriaCreada })=> {
-	
-	const	[buscar,setBuscar] = useState("")
-	
-	const handlesearch = (e) => {
-		setBuscar(e.target.value);
-		console.log(buscar);
-	};
+
+export const NavBar =( { onAddVideo, onDelete, onCategoriaCreada,searchQuery, setSearchQuery, setSelectedVideoId })=> {
 	
 
-	const handleClickAddCategoria= (e) =>{
-		console.log("+ CATEGOORIA ");
-	};
 
+	let url2=`http://localhost:3000/api/videos?search=${searchQuery}`
 
+	const { data, loading, error } = useFetch(url2);
 
-	const handleClickAddSubCategoria= (e) =>{
-		console.log("++ SUB CATEGOORIA ");
+	useEffect(() => {
+
+		console.log("VIDEOS:", data?.data);
+
+	}, [data]);
+	
+
+	const handleSearch = (e) => {
+		setSearchQuery(e.target.value);
+		console.log(e.target.value);
 	};
 
 
@@ -49,7 +51,7 @@ export const NavBar =( { onAddVideo, onDelete, onCategoriaCreada })=> {
 					</NavItem>
 
 					<NavItem estilo=" hidden  mx-10 lg:flex flex-1 ">
-						<InputBuscar  value={buscar}  text="Buscar" icon={IoIosSearch } buscar={handlesearch} />
+						<InputBuscar value={searchQuery} text="Buscar" icon={IoIosSearch} buscar={handleSearch} resultados={data?.data}  setSelectedVideoId={setSelectedVideoId}  />
 					</NavItem>
 			
 		
@@ -73,10 +75,12 @@ export const NavBar =( { onAddVideo, onDelete, onCategoriaCreada })=> {
 
 
 				<div className="flex justify-center lg:hidden w-full  p-2 dark:bg-kanagawa-800"> 
-					<InputBuscar value={buscar}  text="Buscar"  icon={IoIosSearch}  buscar={handlesearch}  />
+					
+					<InputBuscar value={searchQuery} text="Buscar" icon={IoIosSearch} buscar={handleSearch} resultados={data?.data}  setSelectedVideoId={setSelectedVideoId} />
 				</div>
-		
 
+	
 			</nav> 
+			
   	)
 }

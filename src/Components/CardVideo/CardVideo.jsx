@@ -1,18 +1,23 @@
-import jessi from "../../assets/react.svg";
+/* CardVideo.jsx */
+export const CardVideo = ({ id, title, category, subCategory, description, miniatura, setSelectedVideoId }) => {
 
-export const CardVideo = ({ title, category, subCategory, description }) => {
+  const handleClickReproducir = () => {
+   
+    setSelectedVideoId(id);
+  }
   return (
     // Quitamos max-w-[260px] para que el grid controle el ancho
     // Agregamos h-full para que todas las cards midan lo mismo si el contenido varía
-    <li className=" bg-kanagawa-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 flex flex-col h-full">
+    <li onClick={handleClickReproducir} className=" bg-kanagawa-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 flex flex-col h-full">
 
       {/* Imagen: h-40 o similar suele verse mejor para este comportamiento */}
       <div className="w-full h-32 overflow-hidden">
         <img
-          src={jessi}
+          src={miniatura }
           alt={title}
           className=" w-full h-full object-cover"
         />
+        
       </div>
 
       {/* Contenido */}
