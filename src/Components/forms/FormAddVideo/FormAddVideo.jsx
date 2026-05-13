@@ -46,10 +46,7 @@ export const FormAddVideo = ({ reloadCategorias }) => {
 
 			{/* 	<CategorySelector reloadCategorias={reloadCategorias}/> */}
 
-<CategorySelector
-    control={control}
-    reloadCategorias={reloadCategorias}
-/>
+			<CategorySelector control={control} reloadCategorias={reloadCategorias} error={errors.categoria} errorsubCategoria={errors.subCategoria}/>
 
 
 			{/* <InputForm name="categoria" control={control} label ="Categoria" placeholder="Categoria del video" type="text" error={errors.categoria}/>

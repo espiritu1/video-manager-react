@@ -14,7 +14,6 @@ export const Video = ({ leftWidth, isResizing, selectedVideoId, searchQuery }) =
 	const { data, loading, error } = useFetch(URL);
 	
 	
-
 	if (loading) {
 		return <p>Cargando video...</p>;
 	}
@@ -25,8 +24,6 @@ export const Video = ({ leftWidth, isResizing, selectedVideoId, searchQuery }) =
 		return <p>No hay datos</p>;
 	}
 
-	
-	
 	return (
 		<main style={{ width: window.innerWidth >= 640 ? `${leftWidth}%` : "100%" }}
 			className="bg-kanagawa-25 dark:bg-kanagawa-700 p-0.5 my-3 rounded w-full" >
