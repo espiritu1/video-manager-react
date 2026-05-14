@@ -14,73 +14,59 @@ import { FormAddSubCategoria } from '../forms/FormAddSubCategoria/FormAddSubCate
 import { useFetch } from '../Hooks/useFetch'
 
 
-
 export const NavBar =( { onAddVideo, onDelete, onCategoriaCreada,searchQuery, setSearchQuery, setSelectedVideoId })=> {
 	
-
-
 	let url2=`http://localhost:3000/api/videos?search=${searchQuery}`
 
 	const { data, loading, error } = useFetch(url2);
 
-	useEffect(() => {
-
+	/* useEffect(() => {
 		console.log("VIDEOS:", data?.data);
-
 	}, [data]);
-	
+	 */
 
 	const handleSearch = (e) => {
 		setSearchQuery(e.target.value);
 		console.log(e.target.value);
 	};
 
-
-
-	
 	return (
-			<nav className='dark:bg-kanagawa-700 ' aria-label="Barra de navegación principal overflow-visible">
+		<nav className='dark:bg-kanagawa-700 ' aria-label="Barra de navegación principal overflow-visible">
+			<ul className='flex justify-between  gap-2 p-2 bg-kanagawa-25 dark:bg-kanagawa-700' >
 
-				<ul className='flex justify-between  gap-2 p-2 bg-kanagawa-25 dark:bg-kanagawa-700' >
-	
-					<NavItem>
-						<div  className=' py-2 px-3   flex items-center gap-2 justify-center mx-auto'> 
-							<MdVideoCameraBack className="text-2xl"/>  
-							<p className="hidden md:block">Video Estudio</p>
-						</div>
-					</NavItem>
+				<NavItem>
+					<div  className=' py-2 px-3   flex items-center gap-2 justify-center mx-auto'> 
+						<MdVideoCameraBack className="text-2xl"/>  
+						<p className="hidden md:block">Video Estudio</p>
+					</div>
+				</NavItem>
 
-					<NavItem estilo=" hidden  mx-10 lg:flex flex-1 ">
-						<InputBuscar value={searchQuery} text="Buscar" icon={IoIosSearch} buscar={handleSearch} resultados={data?.data}  setSelectedVideoId={setSelectedVideoId}  />
-					</NavItem>
-			
+				<NavItem estilo=" hidden  mx-10 lg:flex flex-1 ">
+					<InputBuscar value={searchQuery} text="Buscar" icon={IoIosSearch} buscar={handleSearch} resultados={data?.data}  setSelectedVideoId={setSelectedVideoId}  />
+				</NavItem>
 		
-					<NavItem>
-						<Dropdown  text="Categoria" icon={RiArchiveDrawerLine}>
-							<FormAddCategoria onCategoriaCreada={onCategoriaCreada}/>
-						</Dropdown>
-						<Dropdown  text="Sub Categoria" icon={CiBookmarkPlus}>
-								<FormAddSubCategoria onCategoriaCreada={onCategoriaCreada} />
-						</Dropdown>
-					</NavItem>
-					
-					<NavItem>
-						<Button text="Agregar video*" icon={IoIosAddCircleOutline} style="text-black dark:text-kanagawa-primaryL"
-							action={onAddVideo}/>
-
-						<Button text="Eliminar" icon={LiaTrashAltSolid } style="text-kanagawa-error  " 
-							action={onDelete}/>
-					</NavItem>
-				</ul>
-
-
-				<div className="flex justify-center lg:hidden w-full  p-2 dark:bg-kanagawa-800"> 
-					
-					<InputBuscar value={searchQuery} text="Buscar" icon={IoIosSearch} buscar={handleSearch} resultados={data?.data}  setSelectedVideoId={setSelectedVideoId} />
-				</div>
-
 	
-			</nav> 
-			
+				<NavItem>
+					<Dropdown  text="Categoria" icon={RiArchiveDrawerLine}>
+						<FormAddCategoria onCategoriaCreada={onCategoriaCreada}/>
+					</Dropdown>
+					<Dropdown  text="Sub Categoria" icon={CiBookmarkPlus}>
+							<FormAddSubCategoria onCategoriaCreada={onCategoriaCreada} />
+					</Dropdown>
+				</NavItem>
+				
+				<NavItem>
+					<Button text="Agregar video*" icon={IoIosAddCircleOutline} style="text-black dark:text-kanagawa-primaryL"
+						action={onAddVideo}/>
+					<Button text="Eliminar" icon={LiaTrashAltSolid } style="text-kanagawa-error  " 
+						action={onDelete}/>
+				</NavItem>
+
+			</ul>
+			<div className="flex justify-center lg:hidden w-full  p-2 dark:bg-kanagawa-800"> 
+				
+				<InputBuscar value={searchQuery} text="Buscar" icon={IoIosSearch} buscar={handleSearch} resultados={data?.data}  setSelectedVideoId={setSelectedVideoId} />
+			</div>
+		</nav> 			
   	)
 }

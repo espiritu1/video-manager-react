@@ -28,20 +28,19 @@ export const AsideVideos=({isMobile,leftWidth, setSelectedVideoId })=> {
 
         <ul className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4 w-full">
          
-		      {data.data.map((video) => (
+			{data.data.map((video) => (
 
-        <CardVideo
-          key={video.id}
-          id={video.id}
-          title={video.title}
-          category={video.category}
-          subCategory={video.subCategory}
-          description={video.description}
-          miniatura={video.thumbnailUrl}
-		      setSelectedVideoId={setSelectedVideoId} 
-        />
-
-      ))}
+				<CardVideo
+					key={video.id}
+					id={video.id}
+					title={video.title}
+					category={video.category}
+					subCategory={video.subCategory}
+					description={video.description}
+					miniatura={video.thumbnailUrl}
+					setSelectedVideoId={setSelectedVideoId} 
+				/>
+			))}
 				
 			
         </ul>

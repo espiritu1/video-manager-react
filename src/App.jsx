@@ -20,7 +20,6 @@ function App() {
     	setReloadCategorias(prev => !prev);
 	};
 
-
 	return (
 		<>	
 			<NavBar

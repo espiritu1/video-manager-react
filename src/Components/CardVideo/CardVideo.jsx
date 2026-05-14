@@ -2,7 +2,6 @@
 export const CardVideo = ({ id, title, category, subCategory, description, miniatura, setSelectedVideoId }) => {
 
   const handleClickReproducir = () => {
-   
     setSelectedVideoId(id);
   }
   return (
