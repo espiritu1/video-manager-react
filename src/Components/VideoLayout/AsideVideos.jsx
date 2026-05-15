@@ -1,23 +1,37 @@
 /* AsideVideos.jsx */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CardVideo } from '../CardVideo/CardVideo'
 import { useFetch } from '../Hooks/useFetch'
+import { useVideoStore } from '../../store/useVideoStore'
 
 
 export const AsideVideos=({isMobile,leftWidth, setSelectedVideoId })=> {
-	const URL = "http://localhost:3000/api/videos";
 
-	const { data, loading, error } = useFetch(URL);
+	// 🌟 2. Escuchamos el estado global
+	const isUploadSuccess = useVideoStore((state) => state.isUploadSuccess);
+    const setUploadSuccess = useVideoStore((state) => state.setUploadSuccess);
 
-		if (loading) {
-			return <p>Cargando video...</p>;
-		}
-		if (error) {
-			return <p>Error: {error.message}</p>;
-		}		
-		if (!data) {
-			return <p>No hay datos</p>;
-		}
+	// 🌟 3. Estado local para mutar la URL
+    const [ticket, setTicket] = useState(Date.now());
+
+// 🌟 4. Si se sube un video, cambiamos el ticket y limpiamos Zustand
+    useEffect(() => {
+        if (isUploadSuccess) {
+            console.log("🔄 ¡Actualizando lista lateral de videos!");
+            setTicket(Date.now());
+            setUploadSuccess(false); // Regresa a false para la próxima subida
+        }
+    }, [isUploadSuccess, setUploadSuccess]);
+
+    // 🌟 5. Agregamos el ticket dinámico a la URL
+    const URL = `http://localhost:3000/api/videos?t=${ticket}`;
+
+    const { data, loading, error } = useFetch(URL);
+
+	  
+    if (loading) return <p>Cargando video...</p>;
+    if (error) return <p>Error: {error.message}</p>;      
+    if (!data) return <p>No hay datos</p>;
 
   return (
 	      <aside

@@ -7,7 +7,7 @@ export const CardVideo = ({ id, title, category, subCategory, description, minia
   return (
     // Quitamos max-w-[260px] para que el grid controle el ancho
     // Agregamos h-full para que todas las cards midan lo mismo si el contenido varía
-    <li onClick={handleClickReproducir} className=" bg-kanagawa-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 flex flex-col h-full">
+    <li onClick={handleClickReproducir} className=" dark:text-kanagawa-100 bg-kanagawa-50 dark:bg-kanagawa-900 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 flex flex-col h-full">
 
       {/* Imagen: h-40 o similar suele verse mejor para este comportamiento */}
       <div className="w-full h-32 overflow-hidden">
@@ -28,19 +28,19 @@ export const CardVideo = ({ id, title, category, subCategory, description, minia
             <span className="bg-kanagawa-600 px-1 py-0.5 rounded text-kanagawa-100 truncate">
               {category}
             </span>
-            <span className="bg-kanagawa-700 px-1 py-0.5 rounded text-kanagawa-100 truncate">
+            <span className="bg-kanagawa-600 px-1 py-0.5 rounded text-kanagawa-100 truncate">
               {subCategory}
             </span>
           </div>
 
           {/* Título */}
-          <h3 className="text-[13px] font-semibold text-kanagawa-25 leading-tight line-clamp-2">
+          <h3 className="text-[13px] font-semibold dark:text-kanagawa-25 leading-tight line-clamp-2">
             {title}
           </h3>
         </div>
 
         {/* Descripción */}
-        <p className="text-[11px] text-kanagawa-200 line-clamp-2">
+        <p className="text-[11px] dark:text-kanagawa-200 line-clamp-2">
           {description}
         </p>
 

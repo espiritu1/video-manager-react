@@ -47,12 +47,12 @@ export const InputBuscar = ({ text, icon: Icon, buscar, value, resultados = [], 
                 type="search"
                 autoComplete="off"
                 placeholder={text}
-                className="w-full py-1.5 pl-10 pr-4 border border-white/10 rounded text-sm outline-none bg-kanagawa-900 text-white"
+                className="w-full py-1.5 pl-10 pr-4 border border-white/10 rounded text-sm outline-none bg-kanagawa-100 dark:bg-kanagawa-700 text-kanagawa-800"
             />
 
             {/* 5. Mostramos el dropdown si el estado es verdadero y hay texto */}
             {mostrarDropdown && value?.length > 0 && (
-                <div className="absolute top-full left-0 w-full bg-kanagawa-800 border border-white/10 mt-1 rounded shadow-lg z-50">
+                <div className="absolute top-full left-0 w-full  border-white/10 mt-1 rounded shadow-lg z-50">
                     {resultados?.length > 0 ? (
                         <ul>
                             {resultados.map((item) => (
@@ -63,7 +63,7 @@ export const InputBuscar = ({ text, icon: Icon, buscar, value, resultados = [], 
                                         buscar({ target: { value: "" } });
                                         setMostrarDropdown(false); // Cerramos al seleccionar
                                     }}
-                                    className="p-2 cursor-pointer hover:bg-kanagawa-700 text-sm text-kanagawa-100"
+                                    className="p-2 cursor-pointer hover:bg-kanagawa-200 text-sm bg-kanagawa-100 text-kanagawa-800 dark:text-kanagawa-800"
                                 >
                                     {item.title}
                                 </li>

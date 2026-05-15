@@ -6,9 +6,12 @@ import {videoSchema} from"../models/videoSchema"
 import { CrearVideo } from "../../../API/CrearVideo";
 import { useState } from "react";
 import { CategorySelector } from "../../InputForm/Selecto/CategorySelector";
+import { useVideoStore } from "../../../store/useVideoStore";
 
 export const FormAddVideo = ({ reloadCategorias }) => {
 	const [fileKey, setFileKey] = useState(Date.now());
+
+	const setUploadSuccess = useVideoStore((state) => state.setUploadSuccess);
 	
 	const { control, handleSubmit,reset, formState: { errors } } = useForm({
 		resolver: zodResolver(videoSchema),
@@ -25,15 +28,17 @@ export const FormAddVideo = ({ reloadCategorias }) => {
 
 	const onSubmit = async (data) => {
 		
-		console.log(data);
+	/* 	console.log("Datos del formulario:", data); */
 		const res = await CrearVideo(data);
 
 		if (res.ok) {
-			console.log("✅ esto se guardo", res.mensaje);
+			console.log("✅ esto se guardo", res.success);
+				setUploadSuccess(res.success);
+
 			setFileKey(Date.now()); 
 			reset();
 		} else {
-			console.log("❌", res.mensaje);
+			console.log("❌ Hubo un error:", res.mensaje);
 		}
 	};
 

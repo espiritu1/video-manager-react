@@ -29,7 +29,9 @@ function App() {
 				searchQuery={searchQuery}
 				setSearchQuery={setSearchQuery}
 				setSelectedVideoId={setSelectedVideoId}
-				/>
+			/>
+
+				<VideoLayout searchQuery={searchQuery} selectedVideoId={selectedVideoId} setSelectedVideoId={setSelectedVideoId}/>
 
 				<Aside
 					show={showAddVideo}
@@ -49,7 +51,6 @@ function App() {
 					children={ <AsideRight/> } >
 				</Aside>
 
-			<VideoLayout searchQuery={searchQuery} selectedVideoId={selectedVideoId} setSelectedVideoId={setSelectedVideoId}/>
 		</>
 	)
 }

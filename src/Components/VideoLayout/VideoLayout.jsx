@@ -5,7 +5,6 @@ import { Video } from "./Video"
 import { useMediaQuery } from "../Hooks/useMediaQuery"
 import { AsideVideos } from "./AsideVideos"
 
-
 export const VideoLayout = ({ searchQuery, setSelectedVideoId, selectedVideoId  }) => {
 	const containerRef = useRef(null)
 	const isMobile = useMediaQuery("(max-width: 640px)")
