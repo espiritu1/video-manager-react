@@ -7,8 +7,10 @@ import {CategoriaSchema} from"../models/categoriaSchema"
 import { useState } from "react";
 import { CrearCategoria } from "../../../API/CrearCategoria";
 import { Button } from "../../Buttons/";
+import { useVideoStore } from "../../../store/useVideoStore";
 
-export const FormAddCategoria = ({ onCategoriaCreada }) => {
+export const FormAddCategoria = () => {
+	const reloadCategorias = useVideoStore((state) => state.reloadCategorias);
 	const { control, handleSubmit,reset, formState: { errors } } = useForm({
 		resolver: zodResolver(CategoriaSchema),
 		mode: "onTouched" ,
@@ -16,7 +18,7 @@ export const FormAddCategoria = ({ onCategoriaCreada }) => {
 			categoria: "",
   		}
 	});
-
+ 
 	const onSubmit = async (data) => {
 		console.log(data);
 
@@ -25,7 +27,7 @@ export const FormAddCategoria = ({ onCategoriaCreada }) => {
 		if(res.ok){
 			console.log("✅ Se Guardo LA categoria Exitosamente", res.mensaje);
 			reset();
-			onCategoriaCreada();
+			reloadCategorias();
 		}else{
 			console.log("❌ algo salio mal y valo vergass", res.mensaje);
 		}

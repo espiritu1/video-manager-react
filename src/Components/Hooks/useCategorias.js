@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 
-export const useCategorias = (reloadCategorias) => {
+export const useCategorias = (trigger) => {
 
     const [categorias, setCategorias] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -37,7 +37,7 @@ export const useCategorias = (reloadCategorias) => {
 
         fetchCategorias();
 
-    }, [reloadCategorias]);
+    }, [trigger]);
 
     // principales
     const categoriasPrincipales = categorias.filter(

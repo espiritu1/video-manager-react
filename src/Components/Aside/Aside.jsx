@@ -1,3 +1,4 @@
+/* Aside */
 import { IoClose } from "react-icons/io5"
 
 export const Aside = ({ 
@@ -5,7 +6,7 @@ export const Aside = ({
 }) => {
 
   const isLeft = position === "left"
-
+ 
   return (
     <>
       {/* Overlay */}

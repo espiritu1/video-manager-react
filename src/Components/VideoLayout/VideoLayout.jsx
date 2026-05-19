@@ -12,6 +12,7 @@ export const VideoLayout = ({ searchQuery, setSelectedVideoId, selectedVideoId  
 	const [leftWidth, setLeftWidth] = useState(70)
 	const MIN_LEFT = 20
 	const MIN_RIGHT = 5
+ 
 
 	const handleResize = (e) => {
 		if (isMobile) return

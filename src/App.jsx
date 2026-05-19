@@ -7,7 +7,6 @@ import { Aside } from './Components/Aside/Aside'
 import { AsideLeft } from './Components/Aside/AsideLeft/AsideLeft'
 import { AsideRight } from './Components/Aside/AsideRight/AsideRight'
 
-
 function App() {
 
 	const [showAddVideo, setShowAddVideo] = useState(false)
@@ -31,26 +30,25 @@ function App() {
 				setSelectedVideoId={setSelectedVideoId}
 			/>
 
-				<VideoLayout searchQuery={searchQuery} selectedVideoId={selectedVideoId} setSelectedVideoId={setSelectedVideoId}/>
+			<VideoLayout searchQuery={searchQuery} selectedVideoId={selectedVideoId} setSelectedVideoId={setSelectedVideoId}/>
 
-				<Aside
-					show={showAddVideo}
-					position="left"
-					onClose={() => setShowAddVideo(false)}
-					title="Agregar video"
-					children={ 
-					<AsideLeft reloadCategorias={reloadCategorias} /> 
-					} >
-				</Aside>
+			<Aside
+				show={showAddVideo}
+				position="left"
+				onClose={() => setShowAddVideo(false)}
+				title="Agregar video"
+				children={ 
+				<AsideLeft reloadCategorias={reloadCategorias} /> 
+				} >
+			</Aside>
 
-				<Aside
-					show={showDelete}
-					position="right"
-					onClose={() => setShowDelete(false)}
-					title="Eliminar"
-					children={ <AsideRight/> } >
-				</Aside>
-
+			<Aside
+				show={showDelete}
+				position="right"
+				onClose={() => setShowDelete(false)}
+				title="Eliminar"
+				children={ <AsideRight/> } >
+			</Aside>
 		</>
 	)
 }

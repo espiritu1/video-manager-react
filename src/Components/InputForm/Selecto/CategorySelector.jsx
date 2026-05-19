@@ -1,19 +1,23 @@
+/* CategorySelector */
 import { useMemo } from "react";
 import { Controller, useWatch } from "react-hook-form";
 
 import { Select } from "./Select";
 import { useCategorias } from "../../Hooks/useCategorias";
+import { useVideoStore } from "../../../store/useVideoStore";
 
-export const CategorySelector = ({ control,  reloadCategorias, error, errorsubCategoria }) => {
+export const CategorySelector = ({ control, error, errorsubCategoria }) => {
 
-	const { categoriasPrincipales, categorias } = useCategorias(reloadCategorias);
+ 
+	const categoriesTrigger = useVideoStore((state) => state.categoriesTrigger);
+	
+	const { categoriasPrincipales, categorias } = useCategorias(categoriesTrigger);
 
 
 	const categoriaSeleccionada = useWatch({ control, name: "categoria" });
 
     // subcategorias dinámicas
 	const subcategorias = useMemo(() => {
-
 		if (!categoriaSeleccionada) return [];
 
         const categoria = categorias.find(

@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { useFetch } from "../../Hooks/useFetch";
 import { CardVideo } from "../../CardVideo/CardVideo";
 import { useDelete } from "../../Hooks/useDelete";
+import { useVideoStore } from "../../../store/useVideoStore"
 
 const tabs = [
-  { id: "videos", label: "Videos" },
+  { id: "videos Delete", label: "Videos Delete" },
   { id: "categorias", label: "Categorías" },
   { id: "subcategorias", label: "Subcategorías" },
 ];
@@ -15,6 +16,7 @@ export const AsideRight = () => {
 	
 	const [activeTab, setActiveTab] = useState("videos");
 	const [selectedVideoId, setSelectedVideoId] = useState(null);
+	const setUploadSuccess = useVideoStore((state) => state.setUploadSuccess);
 	
 		const URL_Delete = selectedVideoId  ? `http://localhost:3000/api/videos/${selectedVideoId}`  : null;
 		const { respuesta, loading, error } = useDelete(URL_Delete);
@@ -23,13 +25,14 @@ export const AsideRight = () => {
         if (respuesta) {
             console.log("Video eliminado con éxito:", respuesta.success," y " , selectedVideoId );
            //una vez eliminado tengo que recargaretoo falta pro hacae 
-         
+         setUploadSuccess(respuesta.success);
+		   
         }
     }, [respuesta]);
 	
  
  
-	const Videos = () => {
+	const VideosDelete = () => {
 
 		const URL = "http://localhost:3000/api/videos";
 		const { data, loading, error } = useFetch(URL);
@@ -48,6 +51,7 @@ export const AsideRight = () => {
 
 		return (
 			<div className=" m-2">
+				<p>seleccona un video para borrarlo </p>
 
 				<ul className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4 w-full">
 
@@ -69,7 +73,7 @@ export const AsideRight = () => {
 	};
 
 	const Categorias = () => {
-		console.log("ELIMINAR categoria: ")
+		console.log("ELIMINAR categoria: texto de ejemplo  ")
 		return (
 			<div className="text-center text-slate-400">
 			
@@ -117,8 +121,8 @@ export const AsideRight = () => {
 
 			</div>
 			
-			<div className="border mt-5">
-				{activeTab === "videos" && <Videos />}
+			<div className="mt-5">
+				{activeTab === "videos Delete" && <VideosDelete />}
 				{activeTab === "categorias" && <Categorias />}
 				{activeTab === "subcategorias" && <SubCategorias />}
 			</div>

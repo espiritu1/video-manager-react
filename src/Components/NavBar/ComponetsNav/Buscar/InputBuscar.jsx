@@ -47,7 +47,7 @@ export const InputBuscar = ({ text, icon: Icon, buscar, value, resultados = [], 
                 type="search"
                 autoComplete="off"
                 placeholder={text}
-                className="w-full py-1.5 pl-10 pr-4 border border-white/10 rounded text-sm outline-none bg-kanagawa-100 dark:bg-kanagawa-700 text-kanagawa-800"
+                className="w-full py-1.5 pl-10 pr-4 border border-white/10 rounded text-sm outline-none bg-kanagawa-100 dark:bg-kanagawa-700 text-kanagawa-800 dark:text-kanagawa-100"
             />
 
             {/* 5. Mostramos el dropdown si el estado es verdadero y hay texto */}
@@ -70,7 +70,7 @@ export const InputBuscar = ({ text, icon: Icon, buscar, value, resultados = [], 
                             ))}
                         </ul>
                     ) : (
-                        <p className="p-2 text-gray-500 text-sm">Sin resultados</p>
+                        <p className="p-2 pl-10  hover:bg-kanagawa-200 text-sm bg-kanagawa-100 text-kanagawa-800 dark:text-kanagawa-800">Sin resultados</p>
                     )}
                 </div>
             )}

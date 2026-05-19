@@ -7,11 +7,12 @@ import { CrearVideo } from "../../../API/CrearVideo";
 import { useState } from "react";
 import { CategorySelector } from "../../InputForm/Selecto/CategorySelector";
 import { useVideoStore } from "../../../store/useVideoStore";
-
-export const FormAddVideo = ({ reloadCategorias }) => {
+ 
+export const FormAddVideo = () => {
 	const [fileKey, setFileKey] = useState(Date.now());
 
 	const setUploadSuccess = useVideoStore((state) => state.setUploadSuccess);
+	const reloadCategorias = useVideoStore((state) => state.reloadCategorias);
 	
 	const { control, handleSubmit,reset, formState: { errors } } = useForm({
 		resolver: zodResolver(videoSchema),
@@ -32,13 +33,14 @@ export const FormAddVideo = ({ reloadCategorias }) => {
 		const res = await CrearVideo(data);
 
 		if (res.ok) {
-			console.log("✅ esto se guardo", res.success);
-				setUploadSuccess(res.success);
+			console.log("✅ esto se guardo el video: ", res.success);
+			setUploadSuccess(res.success);
+			reloadCategorias();
 
 			setFileKey(Date.now()); 
 			reset();
 		} else {
-			console.log("❌ Hubo un error:", res.mensaje);
+			console.log("❌ Hubo un error al intentar subir el video: ", res.mensaje);
 		}
 	};
 
@@ -47,20 +49,13 @@ export const FormAddVideo = ({ reloadCategorias }) => {
 		<form className="flex flex-col gap-3 " onSubmit={handleSubmit(onSubmit)}>
 			<InputForm name="titulo" control={control} label ="Titulo" placeholder="Escribe el título del video" type="text" error={errors.titulo}/>
 			<InputForm name="descripcion" control={control} label ="Descripcion" placeholder="Describe el contenido del video" type="text" error={errors.descripcion}/>
+
+			<CategorySelector control={control}  error={errors.categoria} errorsubCategoria={errors.subCategoria}/>
 			
-
-			{/* 	<CategorySelector reloadCategorias={reloadCategorias}/> */}
-
-			<CategorySelector control={control} reloadCategorias={reloadCategorias} error={errors.categoria} errorsubCategoria={errors.subCategoria}/>
-
-
-			{/* <InputForm name="categoria" control={control} label ="Categoria" placeholder="Categoria del video" type="text" error={errors.categoria}/>
-			<InputForm name="subCategoria" control={control} label ="Sub Categoria" placeholder="subcategoria del video" type="text" error={errors.subCategoria}/> */}
-
 			<InputForm key={fileKey + "-video"}  name="video" control={control} label ="Video" type="file"  error={errors.video}/>
 			<InputForm key={fileKey + "-miniatura"} name="miniatura" control={control} label ="Miniatura"  type="file" error={errors.miniatura}/>
 
-			<button  className = "  border bg-kanagawa-800 p-2 "type="submit"> subir</button>
+			<button  className = " border bg-kanagawa-800 p-2 "type="submit"> subir</button>
 		</form>
 	);
 };

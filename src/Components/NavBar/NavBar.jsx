@@ -14,8 +14,9 @@ import { FormAddSubCategoria } from '../forms/FormAddSubCategoria/FormAddSubCate
 import { useFetch } from '../Hooks/useFetch'
 
 
-export const NavBar =( { onAddVideo, onDelete, onCategoriaCreada,searchQuery, setSearchQuery, setSelectedVideoId })=> {
+export const NavBar =( { onAddVideo, onDelete,searchQuery, setSearchQuery, setSelectedVideoId })=> {
 	
+	 
 	let url2=`http://localhost:3000/api/videos?search=${searchQuery}`
 
 	const { data, loading, error } = useFetch(url2);
@@ -48,15 +49,15 @@ export const NavBar =( { onAddVideo, onDelete, onCategoriaCreada,searchQuery, se
 	
 				<NavItem>
 					<Dropdown  text="Categoria" icon={RiArchiveDrawerLine}>
-						<FormAddCategoria onCategoriaCreada={onCategoriaCreada}/>
+						<FormAddCategoria />
 					</Dropdown>
 					<Dropdown  text="Sub Categoria" icon={CiBookmarkPlus}>
-							<FormAddSubCategoria onCategoriaCreada={onCategoriaCreada} />
+						<FormAddSubCategoria  />
 					</Dropdown>
 				</NavItem>
 				
 				<NavItem>
-					<Button text="Agregar video*" icon={IoIosAddCircleOutline} style="text-black dark:text-kanagawa-primaryL"
+					<Button text="Agregar video" icon={IoIosAddCircleOutline} style="text-black dark:text-kanagawa-primaryL"
 						action={onAddVideo}/>
 					<Button text="Eliminar" icon={LiaTrashAltSolid } style="text-kanagawa-error  " 
 						action={onDelete}/>

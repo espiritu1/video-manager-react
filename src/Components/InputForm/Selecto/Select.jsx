@@ -1,16 +1,8 @@
 /* Select.jsx */
-export const Select = ({
-    items = [],
-    value,
-    onChange,
-    placeholder = "Selecciona una opción",
-    name,
-    optionLabel = "name",
-    optionValue = "id",
-    className = "",
-    ...props
-}) => {
-
+export const Select = 
+		({ items = [], value, onChange, placeholder = "Selecciona una opción", 
+			name, optionLabel = "name", optionValue = "id", className = "", ...props }) => {
+ 
     return (
 
         <select
