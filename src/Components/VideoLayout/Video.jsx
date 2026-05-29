@@ -40,7 +40,7 @@ useEffect(() => {
 		<main style={{ width: window.innerWidth >= 640 ? `${leftWidth}%` : "100%" }}
 			className="bg-kanagawa-25 dark:bg-kanagawa-700 p-0.5 my-3 rounded w-full" >
 				
-			<article className="h-full flex flex-col gap-4">
+			<article className="h-full flex flex-col gap-4 p-2">
 
 				<div className={`w-full rounded overflow-hidden ${ isResizing ? 'pointer-events-none' : '' }`}>
 
@@ -50,14 +50,14 @@ useEffect(() => {
 
 				</div>
 
-				<header>
+				<header className='px-2'>
 					<p className="text-xl font-bold">
-						Título del video: {data.data.title}
+					 {data.data.title}
 					</p>
 				</header>
 
-				<section>
-					<h2 className="font-semibold"> Descripción </h2>
+				<section className='px-2'>
+					
 
 					<p> {data.data.description} </p>
 				</section>

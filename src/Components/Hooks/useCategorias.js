@@ -1,4 +1,4 @@
-
+/* useCategorias.js */
 import { useEffect, useState } from "react";
 
 export const useCategorias = (trigger) => {
@@ -9,11 +9,8 @@ export const useCategorias = (trigger) => {
     useEffect(() => {
 
         const fetchCategorias = async () => {
-
             try {
-
                 setLoading(true);
-
                 const res = await fetch(
                     "http://localhost:3000/api/categories"
                 );

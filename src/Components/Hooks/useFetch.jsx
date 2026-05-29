@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { useVideoStore } from "../../store/useVideoStore";
 
 export const useFetch = (url) => {
 
 	const [data, setData] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+
+	const videosTrigger = useVideoStore((state) => state.videosTrigger);
 
 	useEffect(() => {
 		const controller = new AbortController();
@@ -43,7 +46,7 @@ export const useFetch = (url) => {
 			controller.abort();
 		};
 
-	}, [url]);
+	}, [url, videosTrigger]);
 	
 
 	return { data, loading, error };
