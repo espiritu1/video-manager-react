@@ -49,17 +49,17 @@ export const NavBar =( { onAddVideo, onDelete,searchQuery, setSearchQuery, setSe
 	
 				<NavItem>
 					<Dropdown  text="Categoria" icon={RiArchiveDrawerLine}>
-						<FormAddCategoria />
+						<FormAddCategoria/>
 					</Dropdown>
 					<Dropdown  text="Sub Categoria" icon={CiBookmarkPlus}>
-						<FormAddSubCategoria  />
+						<FormAddSubCategoria/>
 					</Dropdown>
 				</NavItem>
 				
 				<NavItem>
 					<Button text="Agregar video" icon={IoIosAddCircleOutline} style="text-black dark:text-kanagawa-primaryL"
 						action={onAddVideo}/>
-					<Button text="Eliminar" icon={LiaTrashAltSolid } style="text-kanagawa-error  " 
+					<Button text="Eliminar" icon={LiaTrashAltSolid } style="text-kanagawa-error"
 						action={onDelete}/>
 				</NavItem>
 

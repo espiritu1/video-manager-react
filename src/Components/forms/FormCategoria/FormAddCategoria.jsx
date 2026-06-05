@@ -18,6 +18,7 @@ export const FormAddCategoria = () => {
 			categoria: "",
   		}
 	});
+	
  
 	const onSubmit = async (data) => {
 		console.log(data);

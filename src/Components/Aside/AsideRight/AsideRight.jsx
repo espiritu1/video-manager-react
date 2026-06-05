@@ -1,11 +1,11 @@
 /* AsideRight.jsx */
 import { useState } from "react";
-import { VideosDelete, CategoriasDelete,SubCategoriasDelete } from "../../delete"; // Asegúrate de que index.ts en 'delete' exporte VideosDelete
+import { VideosDelete, CategoriasDelete,/* SubCategoriasDelete */ } from "../../delete"; // Asegúrate de que index.ts en 'delete' exporte VideosDelete
 
 const tabs = [
 	{ id: "videos", label: "Videos" },
 	{ id: "categorias", label: "Categorías" },
-	{ id: "subcategorias", label: "Subcategorías" },
+/* 	{ id: "subcategorias", label: "Subcategorías" }, */
 ];
 
 export const AsideRight = () => {
@@ -17,11 +17,7 @@ export const AsideRight = () => {
 				<nav className="flex">
 					{tabs.map((tab) => (
 						<button key={tab.id} onClick={() => setActiveTab(tab.id)} className={`px-4 py-3 text-sm transition relative ${
-							activeTab === tab.id 
-								? "text-white" 
-								: "text-kanagawa-300 hover:text-kanagawa-warningL"
-							}`}
-						>
+							activeTab === tab.id  ? "text-white" : "text-kanagawa-300 hover:text-kanagawa-warningL"}`}>
 							{tab.label}
 							{activeTab === tab.id && (
 								<span className="absolute left-0 bottom-0 w-full h-0.5 bg-kanagawa-primaryL" />
@@ -34,7 +30,7 @@ export const AsideRight = () => {
 			<div className="mt-5">
 				{activeTab === "videos" && <VideosDelete />}
 				{activeTab === "categorias" && <CategoriasDelete />}
-				{activeTab === "subcategorias" && <SubCategoriasDelete />}
+				{/* {activeTab === "subcategorias" && <SubCategoriasDelete />} */}
 			</div>
 		</>
 	);

@@ -5,11 +5,10 @@ export const CardVideo = ({ id, title, category, subCategory, description, minia
     setSelectedVideoId(id);
   }
   return (
-    // Quitamos max-w-[260px] para que el grid controle el ancho
-    // Agregamos h-full para que todas las cards midan lo mismo si el contenido varía
-    <li onClick={handleClickReproducir} className=" dark:text-kanagawa-100 bg-kanagawa-50 dark:bg-kanagawa-900 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 flex flex-col h-full">
+  
+    <li onClick={handleClickReproducir} className="dark:text-kanagawa-100 bg-kanagawa-50 dark:bg-kanagawa-900 rounded-xl overflow-hidden shadow-md hover:shadow-xl transform hover:scale-105 cursor-pointer transition duration-300 flex flex-col h-full" >
 
-      {/* Imagen: h-40 o similar suele verse mejor para este comportamiento */}
+  
       <div className="w-full h-32 overflow-hidden">
         <img
           src={miniatura }

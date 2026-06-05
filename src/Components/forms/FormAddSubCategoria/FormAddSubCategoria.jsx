@@ -48,13 +48,16 @@ export const FormAddSubCategoria = () => {
     }; 
         
     return ( 
-        <form 
-            className="w-full max-w-sm p-3 space-y-4" 
-            onSubmit={handleSubmit(onSubmitSubCategoria)}
-        > 
-            {/* Input para el nombre de la subcategoría */}
+        <form  className="w-60 p-4 space-y-4" onSubmit={handleSubmit(onSubmitSubCategoria)}> 
+
+			<div className="flex justify-between items-center">
+				<h3 className="text-lg font-semibold">
+					Nueva SubCategoría
+				</h3>
+			</div>
+		
             <InputForm 
-                name="subcategoria" 
+                name=" subcategoria" 
                 control={control} 
                 label="Subcategoría"
                 placeholder="Nombre de la subcategoría" 
@@ -70,10 +73,10 @@ export const FormAddSubCategoria = () => {
                     name="categoria" 
                     render={({ field }) => ( 
                         <Select 
-                            items={categoriasPrincipales} // Pasamos solo las principales
+                            items={categoriasPrincipales} 
                             value={field.value} 
                             onChange={field.onChange} 
-                            placeholder="Selecciona categoría padre" 
+                            placeholder="Categoría padre" 
                             name={field.name} 
                         /> 
                     )} 

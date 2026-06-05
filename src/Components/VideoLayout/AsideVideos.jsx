@@ -34,7 +34,7 @@ export const AsideVideos=({isMobile,leftWidth, setSelectedVideoId })=> {
 
 	return (
 		<aside style={{ width: isMobile ? "100%" : `${100 - leftWidth}%` }} className=" bg-kanagawa-25 dark:bg-kanagawa-700 rounded p-4 my-3 mr-2 overflow-y-auto w-full sm:w-auto">
-			<h2 className="font-bold mb-4">Lista de videos</h2>
+			<h2 className="font-bold mb-4 pb-4">Lista de videos</h2>
 			<ul className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4 w-full">
 				{data.data.map((video) => (
 					<CardVideo

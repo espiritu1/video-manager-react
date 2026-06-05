@@ -17,28 +17,15 @@ export const Aside = ({
 		}
 
       {/* Aside */}
-      <aside className={` fixed top-0 ${isLeft ? "left-0" : "right-0"}
-	  h-full 
-          w-[75%] lg:w-[45%]
-          bg-amber-50 dark:bg-kanagawa-700
-          z-50
-          shadow-xl
-          transform transition-transform duration-300
-          ${show
-            ? "translate-x-0"
-            : isLeft
-              ? "-translate-x-full"
-              : "translate-x-full"
+      <aside className={` fixed top-0 ${isLeft ? "left-0" : "right-0"} h-full  w-[75%] lg:w-[45%] bg-amber-50 dark:bg-kanagawa-700 z-50 shadow-xl transform transition-transform duration-300
+          ${show ? "translate-x-0" : isLeft  ? "-translate-x-full"  : "translate-x-full"
           }
         `}
       >
         
         {/* Header */}
-        <div className={`
-						p-4 flex justify-between items-center 
-						border-b border-kanagawa-600
-						 ${!isLeft && "flex-row-reverse"}
-						`}>
+        <div className={`p-4 flex justify-between items-center border-b border-kanagawa-600
+						 ${!isLeft && "flex-row-reverse"}`}>
 						
           <h2 className="text-xl font-bold">
             {title}
