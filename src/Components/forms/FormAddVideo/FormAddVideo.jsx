@@ -6,16 +6,18 @@ import { CrearVideo } from "../../../API/CrearVideo";
 import { useState } from "react";
 import { CategorySelector } from "../../InputForm/Selecto/CategorySelector";
 import { useVideoStore } from "../../../store/useVideoStore";
+import { sileo } from "sileo"; 
+
  
 export const FormAddVideo = () => {
-    // ⭐ Agrupamos todas las llamadas de Zustand limpiamente y sin duplicados
+    
     const reloadVideos = useVideoStore((state) => state.reloadVideos); 
     const reloadCategorias = useVideoStore((state) => state.reloadCategorias);
     const setUploadSuccess = useVideoStore((state) => state.setUploadSuccess);
-    // ⭐ (Borramos la línea duplicada de reloadCategorias que estaba aquí abajo)
+    
 
     const [fileKey, setFileKey] = useState(Date.now());
-    
+
     const { control, handleSubmit, reset, formState: { errors } } = useForm({
         resolver: zodResolver(videoSchema),
         mode: "onTouched",
@@ -32,21 +34,47 @@ export const FormAddVideo = () => {
     const onSubmit = async (data) => {
         const res = await CrearVideo(data);
 
-        if (res.ok) {
-            console.log("✅ esto se guardo el video: ", res.success);
-            setUploadSuccess(res.success);
-            reloadVideos();
-            reloadCategorias();
+        if (res.success) {
+			console.log("✅ esto se guardo el video:  !!!!!!!", res.success);
+			console.log("✅ esto se guardo el video:  !!!!!!!", res);
 
-            setFileKey(Date.now()); 
-            reset();
+			sileo.success({
+				title: "Video subido",
+				position: "bottom-left",
+				styles:{ title:"text-kanagawa-700!",
+					description:"text-kanagawa-800!",},
+				description: `El video ${res.data.title} se subió correctamente`,
+				duration: 4000,
+			});
+
+
+			setUploadSuccess(res.success);
+			reloadVideos();
+			reloadCategorias();
+			setFileKey(Date.now()); 
+			reset();
+
         } else {
-            console.log("❌ Hubo un error al intentar subir el video: ", res.mensaje);
+            console.log("❌ Hubo un error al intentar subir el video: ", res);
+			 sileo.error({
+            title: `${res.mensaje}`,
+			position: "bottom-left",
+			styles:{ title:"text-kanagawa-700!",
+					description:"text-kanagawa-800!",},
+            description: `Intenta nuevamente`,
+            duration: 4000,
+        });
+
+			
         }
     };
 
     return (
         <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
+
+		
+
+
             <InputForm name="titulo" control={control} label="Titulo" placeholder="Escribe el título del video" type="text" error={errors.titulo}/>
             <InputForm name="descripcion" control={control} label="Descripcion" placeholder="Describe el contenido del video" type="text" error={errors.descripcion}/>
 

@@ -6,9 +6,12 @@ import { VideoLayout } from './Components/VideoLayout/VideoLayout'
 import { Aside } from './Components/Aside/Aside'
 import { AsideLeft } from './Components/Aside/AsideLeft/AsideLeft'
 import { AsideRight } from './Components/Aside/AsideRight/AsideRight'
+import { Toaster } from "sileo";
+
 
 
 function App() {
+	
 
 	const [showAddVideo, setShowAddVideo] = useState(false)
 	const [showDelete, setShowDelete] = useState(false)
@@ -22,6 +25,7 @@ function App() {
 
 	return (
 		<>	
+		 <Toaster   />
 			<NavBar
 				onAddVideo={() => setShowAddVideo(true)}
 				onDelete={() => setShowDelete(true)} 

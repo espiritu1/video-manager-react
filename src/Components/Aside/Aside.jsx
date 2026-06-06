@@ -11,13 +11,13 @@ export const Aside = ({
     <>
       {/* Overlay */}
       {show && ( <div 	onClick={onClose}
-          				className="fixed inset-0 bg-black/40 z-40"
+          				className="fixed inset-0 bg-black/40 z-30"
         		/>
 				)
 		}
 
       {/* Aside */}
-      <aside className={` fixed top-0 ${isLeft ? "left-0" : "right-0"} h-full  w-[75%] lg:w-[45%] bg-amber-50 dark:bg-kanagawa-700 z-50 shadow-xl transform transition-transform duration-300
+      <aside className={` fixed top-0 ${isLeft ? "left-0" : "right-0"} h-full  w-[75%] lg:w-[45%] bg-amber-50 dark:bg-kanagawa-700 z-40 shadow-xl transform transition-transform duration-300
           ${show ? "translate-x-0" : isLeft  ? "-translate-x-full"  : "translate-x-full"
           }
         `}
