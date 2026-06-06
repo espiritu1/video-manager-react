@@ -25,7 +25,7 @@ function App() {
 
 	return (
 		<>	
-		 <Toaster   />
+		 <Toaster/>
 			<NavBar
 				onAddVideo={() => setShowAddVideo(true)}
 				onDelete={() => setShowDelete(true)} 

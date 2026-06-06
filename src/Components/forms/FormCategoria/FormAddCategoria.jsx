@@ -33,7 +33,7 @@ export const FormAddCategoria = () => {
 			reloadCategorias();
 			
 			sileo.success({
-				title: "Categoría creada exotosamente ",
+				title: "Categoría creada exitosamente ",
 				duration: 4000,
 				position: "top-center",
 				styles:{ title:"text-kanagawa-700!",},
@@ -49,8 +49,7 @@ export const FormAddCategoria = () => {
 				duration: 4000,
 				styles:{ title:"text-kanagawa-700!",
 						description:"text-kanagawa-800!",},            
-			});
-			
+			});			
 		}
 	}
 
