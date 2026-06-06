@@ -1,7 +1,9 @@
+
 import { useState, useEffect } from "react";
 import { useVideoStore } from "../../store/useVideoStore";
 import { useCategorias } from "../Hooks/useCategorias";
 import { useDelete } from "../Hooks/useDelete";
+import { sileo } from "sileo"; // 1. Importamos sileo
 
 export const CategoriasDelete = () => {
     const categoriesTrigger = useVideoStore((state) => state.categoriesTrigger);
@@ -19,13 +21,43 @@ export const CategoriasDelete = () => {
     const URL_Delete = idAEliminar ? `http://localhost:3000/api/categories/${idAEliminar}` : null;
     const { respuesta, loading: deleteLoading, error: deleteError } = useDelete(URL_Delete);
 
+    // 2. Interceptamos el botón para mostrar primero el modal de Sileo
+    const handleConfirmarSileo = (id, nombreCategoria) => {
+        sileo.action({
+            title: "Eliminar categoría",
+            description: `¿Estás seguro de borrar la categoría "${nombreCategoria}"?`,
+            position: "top-right",
+            styles: {
+                title: "text-kanagawa-700!",
+                description: "text-kanagawa-800!",
+            },
+            button: {
+                title: "Eliminar",
+                onClick: () => {
+                    setIdAEliminar(id); // Si confirma en Sileo, se activa el hook useDelete
+                },
+            },
+        });
+    };
+
     // Efecto para escuchar la respuesta del servidor
     useEffect(() => {
         if (respuesta) {
-            // Imprime la respuesta exacta del servidor en la consola
             console.log("Respuesta del servidor al eliminar categoría:", respuesta);
             
             if (respuesta.success) {
+                // 3. Mostramos notificación de éxito con Sileo
+                sileo.success({
+                    title: "Categoría eliminada",
+                    description: "La categoría fue eliminada correctamente",
+                    position: "top-right",
+                    duration: 4000,
+                    styles: {
+                        title: "text-kanagawa-700!",
+                        description: "text-kanagawa-800!",
+                    },
+                });
+
                 // Forzar recarga en el store global
                 if (setCategoriesTrigger) {
                     setCategoriesTrigger(Math.random());
@@ -38,11 +70,6 @@ export const CategoriasDelete = () => {
             setIdAEliminar(null);
         }
     }, [respuesta, setCategoriesTrigger]);
-
-    // Manejador del botón (ejecuta directo sin alerta)
-    const handleEliminar = (id) => {
-        setIdAEliminar(id);
-    };
 
     // Evaluamos los motivos de bloqueo para simplificar el JSX
     const tieneHijos = categoriaActual?.children && categoriaActual.children.length > 0;
@@ -109,7 +136,7 @@ export const CategoriasDelete = () => {
                                 </div>
                             )}
 
-                            {/* Detalle B: Bloqueo por Subcategorías */}
+                           
                             {tieneHijos && (
                                 <div>
                                     <p className="text-xs font-bold text-indigo-400 uppercase tracking-wider mb-2">
@@ -134,7 +161,8 @@ export const CategoriasDelete = () => {
                             </p>
                             <button
                                 type="button"
-                                onClick={() => handleEliminar(categoriaActual.id)}
+                                // 4. Al hacer clic, primero llamamos a la confirmación de Sileo
+                                onClick={() => handleConfirmarSileo(categoriaActual.id, categoriaActual.name)}
                                 disabled={deleteLoading}
                                 className="w-full sm:w-auto px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-medium text-sm rounded-lg transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 disabled:opacity-50"
                             >

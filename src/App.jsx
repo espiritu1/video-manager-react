@@ -42,9 +42,7 @@ function App() {
 				position="left"
 				onClose={() => setShowAddVideo(false)}
 				title="Agregar video"
-				children={ 
-				<AsideLeft reloadCategorias={reloadCategorias} /> 
-				} >
+				children={  <AsideLeft reloadCategorias={reloadCategorias} /> } >
 			</Aside>
 
 			<Aside
