@@ -8,6 +8,7 @@ import { useState } from "react";
 import { CrearCategoria } from "../../../API/CrearCategoria";
 import { Button } from "../../Buttons/";
 import { useVideoStore } from "../../../store/useVideoStore";
+import { sileo } from "sileo"; 
 
 export const FormAddCategoria = () => {
 	const reloadCategorias = useVideoStore((state) => state.reloadCategorias);
@@ -26,11 +27,30 @@ export const FormAddCategoria = () => {
 		const res = await CrearCategoria(data);
 
 		if(res.ok){
-			console.log("✅ Se Guardo LA categoria Exitosamente", res.mensaje);
+			/* console.log("✅ Se Guardo LA categoria Exitosamente", res.mensaje); */
+			/* console.log("✅ Se Guardo LA categoria Exitosamente", res); */
 			reset();
 			reloadCategorias();
+			
+			sileo.success({
+				title: "Categoría creada exotosamente ",
+				duration: 4000,
+				position: "top-center",
+				styles:{ title:"text-kanagawa-700!",},
+				
+			});
+
 		}else{
-			console.log("❌ algo salio mal y valo vergass", res.mensaje);
+			console.log("❌ algo salio mal y valo vergass", res);
+
+			sileo.error({
+				title: `${res.mensaje}`,
+				position: "top-center",
+				duration: 4000,
+				styles:{ title:"text-kanagawa-700!",
+						description:"text-kanagawa-800!",},            
+			});
+			
 		}
 	}
 

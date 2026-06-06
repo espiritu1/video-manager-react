@@ -7,6 +7,8 @@ import { Select } from "../../InputForm/Selecto/Select";
 import { useCategorias } from "../../Hooks/useCategorias"; 
 import { CrearSubCategoria } from "../../../API/CrearSubCategoria";
 import { useVideoStore } from "../../../store/useVideoStore";
+import	{sileo} from "sileo";
+
 
 export const FormAddSubCategoria = () => { 
 
@@ -39,8 +41,23 @@ export const FormAddSubCategoria = () => {
                 reset(); 
                 // Ejecuta el callback para avisarle al padre que actualice la lista
                 reloadCategorias();
+
+					sileo.success({
+				title: "SubCategoría creada exitosamente ",
+				duration: 4000,
+				position: "top-center",
+				styles:{ title:"text-kanagawa-700!",},
+				
+			});
+
             } else { 
-                console.log("❌ Error del servidor:", res.mensaje); 
+                console.log("❌ Error del servidor:", res); 
+				sileo.error({
+					title:`${res.mensaje}`,
+					
+					position: "top-center",
+					duration: 4000,
+				})
             } 
         } catch (error) {
             console.log("❌ Error en la petición:", error);
@@ -57,7 +74,7 @@ export const FormAddSubCategoria = () => {
 			</div>
 		
             <InputForm 
-                name=" subcategoria" 
+                name="subcategoria" 
                 control={control} 
                 label="Subcategoría"
                 placeholder="Nombre de la subcategoría" 
